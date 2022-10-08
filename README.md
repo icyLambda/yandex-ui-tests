@@ -2,11 +2,11 @@
 UI-автотесты для Yandex.ru...
 
 #### Стек технологий:
-  1. Python 3.10.5
-  2. Pytest 7.1.2
-  3. Allure-pytest 2.9.45
-  4. Selenium 4.4.2
-  5. ChromeDriver 104.0.5112.79
+  1. Python 3.10.7
+  2. Pytest 7.1.3
+  3. Allure-pytest 2.11.0
+  4. Selenium 4.5.0
+  5. ChromeDriver 106.0.5249.61
 
 #### Для запуска тестов:
   1. Создать виртуальное окружение:  
@@ -18,13 +18,13 @@ UI-автотесты для Yandex.ru...
   1. В меню "**Project Structure**" установить папку "**src**" как "**Sources Root**".
   2. В меню "**Select Run/Debug Configuration**" выбрать "**Add Configuration**" или "**Edit Configurations**".
   3. Создать новую конфигурацию: в диалоговом окне нажать кнопку "**Add New Configuration**" → "**Python tests**".
-  4. Настроить команду запуска: "**Module name**": "**test_news_block_on_yandex.test_news_block_on_yandex**".
+  4. Настроить команду запуска: "**Module name**": "**name_test_file_without_dot_py.test_name**".
   5. Параметр "**Working Directory**" должен указывать на папку "**src**".
   6. В поле "**Additional Arguments**" ввести аргументы запуска тестов.
 
 #### Пример Additional Arguments для запуска теста:
 ```
---showlocals --alluredir=output -p no:cacheprovider
+--showlocals --alluredir=../logs -p no:cacheprovider
 ```
 
 #### Как установить Allure на Windows 10:
@@ -41,5 +41,5 @@ UI-автотесты для Yandex.ru...
 
 #### Для создания отчета Allure, после выполнения теста:
   1. Открыть терминал в pycharm
-  2. Ввести команду "**allure serve src/output**"
+  2. Ввести команду "**allure serve logs --host localhost**"
   3. Нажать "**ENTER**"!
