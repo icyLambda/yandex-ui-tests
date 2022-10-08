@@ -21,7 +21,7 @@ class YandexPage:
     def check_page_loading_yandex(self):
         title = self.driver.title
         ElementUtils.take_screenshot(driver=self.driver)
-        assert title == "Яндекс", 'Страница не соответствует ожидаемой'
+        assert title == "Дзен", 'Страница не соответствует ожидаемой'
 
     @allure.step('Проверить отображение блока новостей на странице')
     def check_display_news_block(self):
@@ -36,18 +36,18 @@ class YandexPage:
 
     @allure.step('Проверить отображение ссылки на раздел главных новостей')
     def check_displaying_link_to_main_news(self):
-        main_news_link = self.driver.find_element(By.CSS_SELECTOR, ls.main_news_css).is_displayed()
+        main_news_link = self.driver.find_element(By.XPATH, ls.main_news_xpath).is_displayed()
         assert main_news_link, 'Ссылка на раздел главных новостей не отобразилась'
 
     @allure.step('Проверить отображение ссылки на раздел региональных новостей')
     def check_displaying_link_to_regional_news(self):
-        regional_news_link = self.driver.find_element(By.CSS_SELECTOR, ls.regional_news_css).is_displayed()
+        regional_news_link = self.driver.find_element(By.XPATH, ls.regional_news_xpath).is_displayed()
         assert regional_news_link, 'Ссылка на раздел региональных новостей не отобразилась'
 
     @allure.step('Проверить отображение 5 ссылок на новости')
     def check_displaying_five_link_to_news(self) -> int:
         with allure.step('Проверить наличие пяти ссылок на новости в коде новостного блока'):
-            news_links = self.driver.find_elements(By.CSS_SELECTOR, ls.other_news_item_css)
+            news_links = self.driver.find_elements(By.XPATH, ls.other_news_item_xpath)
             assert len(news_links) == 5, 'В блоке новостей найдено не 5 ссылок на новости'
         ElementUtils.check_display_passed_elements(driver=self.driver, elements=news_links)
         return len(news_links)
@@ -68,7 +68,7 @@ class YandexPage:
                 show_more_element.click()
             ElementUtils.force_scroll(driver=self.driver, web_element=show_more_element)
             with allure.step('Получить новую информацию о кол-ве ссылок'):
-                news_links = self.driver.find_elements(By.CSS_SELECTOR, ls.other_news_item_css)
+                news_links = self.driver.find_elements(By.XPATH, ls.other_news_item_xpath)
                 all_count_news_links = len(news_links)
             ElementUtils.check_display_passed_elements(driver=self.driver, elements=news_links)
             ElementUtils.take_screenshot(driver=self.driver)
@@ -98,7 +98,7 @@ class YandexPage:
             collapse_count = len(self.driver.find_elements(By.XPATH, ls.collapse_xpath))
             assert collapse_count == 0, 'Ссылка "Свернуть" не скрылась'
         with allure.step('Получить новую информацию о кол-ве ссылок'):
-            news_links = self.driver.find_elements(By.CSS_SELECTOR, ls.other_news_item_css)
+            news_links = self.driver.find_elements(By.XPATH, ls.other_news_item_xpath)
             all_count_news_links = len(news_links)
         ElementUtils.check_display_passed_elements(driver=self.driver, elements=news_links)
         ElementUtils.take_screenshot(driver=self.driver)
